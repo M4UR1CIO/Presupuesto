@@ -1,5 +1,5 @@
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, create_refresh_token
+from flask import Blueprint, request, jsonify, make_response
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
 from database.db import db
 from models.user_model import Usuario
 
@@ -51,7 +51,14 @@ def login():
     access_token = create_access_token(identity=str(usuario.id))
     refresh_token = create_refresh_token(identity=usuario.email)
 
-    return jsonify(access_token=access_token, refresh_token=refresh_token), 200
+    # Crear la respuesta JSON
+    response = jsonify({"msg": "Login exitoso"})
+
+    # Guardar tokens en cookies
+    set_access_cookies(response, access_token)
+    set_refresh_cookies(response, refresh_token)
+
+    return response
 
 @auth_bp.route('/perfil', methods=["GET"])
 @jwt_required()
@@ -73,4 +80,15 @@ def perfil():
 def refresh_token():
     usuario_actual = get_jwt_identity()  # Extrae el usuario del refresh token
     nuevo_access_token = create_access_token(identity=usuario_actual)
-    return jsonify(access_token=nuevo_access_token)
+
+    response = make_response(jsonify({"msg":"Token refrescado"}))
+    set_access_cookies(response, nuevo_access_token) 
+
+    return response, 200
+
+# Cerrar Sesion
+@auth_bp.route('/logout', methods=['POST'])
+def logout():
+    response = make_response(jsonify({"msg": "Logout exitoso"}))
+    unset_jwt_cookies(response)
+    return response, 200

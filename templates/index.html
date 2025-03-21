@@ -8,32 +8,57 @@
     <!-- Normalize -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
 
-    <!-- Fuente de letra -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
     <!-- Estilos CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     
+    <!-- Link de Animacion -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Iniciar sesión</h2>
-        <form id="login-form">
-            <div>
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
+    <section class="section-auth">
+        <div class="auth-container">
+            <div class="lottie-login">
+                <lottie-player 
+                    src="https://lottie.host/4ac4a610-2a43-49e0-b946-b49d0a53cfe0/YexpZfbO28.json"
+                    background="transparent" 
+                    speed="1" 
+                    style="width: 300px; height: 300px;" 
+                    loop 
+                    autoplay>
+                </lottie-player>
             </div>
-            <div>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
+            <div class="container-form">
+                <div>
+                    <div>
+                        <h2>Bienvenido de Nuevo</h2>
+                        <p>Ingrese sus credenciales</p>
+                    </div>
+                    
+                </div>
+                
+                <form class="login-form" id="login-form">
+                    <div>
+                        <p>Correo electrónico</p>
+                        <input type="email" id="email" name="email" placeholder="Ingrese su Correo electrónico" required>
+                    </div>
+                    <div>
+                        <p>Contraseña</p>
+                        <input type="password" id="password" name="password" placeholder="Ingrese su Contraseña" required>
+                    </div>
+                    <button class="button-auth" type="submit">Iniciar sesión</button>
+                    <div id="error-message" style="color:red; display:none;"></div>
+                    
+                </form>
+                <div class="crear-cuenta">
+                    <span>¿No tienes cuenta?</span>
+                    <a type="submit" href="/register">Registrate Aquí</a>
+                </div>
             </div>
-            <button type="submit">Iniciar sesión</button>
-            <div id="error-message" style="color:red; display:none;"></div>
-            <a type="submit" href="register.html">Crear Cuenta</a>
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+            
+        </div>
+    </section>
+
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
 </html>

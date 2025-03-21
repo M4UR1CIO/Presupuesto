@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 html {
     box-sizing: border-box;
     font-size: 62.5%; /* 1 rem = 10px */    
@@ -12,3 +14,244 @@ body {
     line-height: 2;
 }
 
+/* Pagina de Error */
+.contenedor {
+    max-width:55rem;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    line-height: 1;
+}
+.contenedor_error {
+    max-width: 90rem;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 5px 50px;
+}
+
+.contenedor_error p {
+    display: flex; 
+    justify-content: space-between; /* Separa el texto y el span */
+    border-bottom: 1px solid #ccc; /* Línea separadora opcional */
+    padding: 2px 0;
+}
+
+.titulo-error {
+    color: red;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.subtitulo-error {
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+.span-error {
+    font-weight: 600;
+}
+
+.parrafo_error{
+    font-weight: 400;
+    font-size: 17px;
+}
+
+/* Login y Register */
+
+.section-auth{
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;  /* Centra verticalmente */
+    height: 100vh; /* Para que ocupe toda la altura de la pantalla */
+    margin: 0;
+}
+
+.auth-container {
+    display: flex;
+    justify-items: center;
+    max-width:90rem;
+    margin: auto;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    line-height: 2;
+    margin-top: 10%;
+}
+
+.lottie-login {
+    display: grid;
+    place-items: center;
+    background-color: #d8d5d5;
+    padding: 5rem;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.lottie-register {
+    display: grid;
+    place-items: center;
+    background-color: #d8d5d5;
+    padding: 5rem;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.container-form {
+    width: 100vh;
+    border-radius: 100rem;
+    padding: 5rem 5rem 3rem;
+}
+
+.container-form h2 {
+    font-size: 3rem;
+    line-height: 0;
+    text-transform: uppercase;
+}
+
+.container-form p {
+    font-size: 1.5rem;
+    color: gray;
+    line-height: 0.4;
+}
+
+.login-form{
+    margin-top: 2rem;
+    text-align: start;
+}
+
+.login-form div input{
+    color: white;
+    background-color: rgb(62, 62, 62);
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 4rem;
+    padding: 1rem;
+}
+
+.login-form div input::placeholder {
+    color: #9d9999; /* Cambia el color del placeholder */
+    opacity: 1;
+}
+
+.login-form div p{
+    color: #000000;
+}
+
+.button-auth{
+    margin-top: 1rem;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-auth:hover{
+    scale: 105%;
+    background-color: #434040;
+}
+
+.crear-cuenta{
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.crear-cuenta span{
+    color: gray;
+}
+
+.crear-cuenta a{
+    text-decoration: none;
+}
+
+.header-register {
+    display: flex;
+    align-items: center; /* Alinear elementos verticalmente */
+    justify-content: center; /* Centrar el contenido */
+    gap: 1rem; /* Espacio entre los elementos */
+    position: relative; /* Para que la flecha no afecte la alineación */
+}
+
+.header-register a {
+    position: absolute; /* Posiciona la flecha a la izquierda */
+    left: 0;
+    font-size: 1.5rem; /* Tamaño del icono */
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    transition: all 0.3s ease-in-out;
+}
+
+.header-register a:hover{
+    scale: 120%;
+}
+
+/* Sidebar */
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff ;
+    max-width: 26rem;
+    height: 100vh;
+}
+
+.menu ul{
+    justify-content: center;
+    list-style: none;
+    padding: 1.5rem;
+    margin: 2rem 0 0 0;
+}
+
+.menu li{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+}
+
+.menu li:hover{
+    scale: 105%;
+    background-color: #dddcdc;
+}
+
+.menu i {
+    font-size: 1.8rem;  /* Tamaño uniforme para los iconos */
+    flex-shrink: 0;  /* Evita que los íconos se reduzcan */
+    width: 1.5rem;  /* Asegura que todos los íconos ocupen el mismo espacio */
+    text-align: center; /* Centra el icono */
+}
+
+.menu a{
+    text-decoration: none;
+    font-weight: 600;
+    color: #000000;
+    font-size: large;
+}
+
+.logout{
+    bottom: 0%;
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    height: 7.5rem;
+}
+
+.button-logout{
+    background-color: #D32F2F ;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    font-size: large;
+    font-weight: bold;
+    color: #fff;
+}

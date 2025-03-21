@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Normalize -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Link de Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div>
+        <div class="sidebar">
+            <nav class="menu">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <a href="/presupuestos">Presupuestos</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-file-circle-plus"></i>
+                        <a href="">Crear Presupuesto</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="">Perfil</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <button type="submit" class="button-logout">Cerrar Sesión</button>
+            </div>
+            
+        </div>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    
+</body>
+</html>

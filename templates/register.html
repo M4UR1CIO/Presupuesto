@@ -3,15 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro</title>
+
+    <!-- Normalize -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Link de Animacion -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Link de Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
 </head>
 <body>
-    <h2>Registro</h2>
-    <form id="register-form">
-        <input type="text" id="nombre" placeholder="Nombre" required><br>
-        <input type="email" id="email" placeholder="Correo electrónico" required><br>
-        <input type="password" id="password" placeholder="Contraseña" required><br>
-        <button type="submit">Crear Cuenta</button>
-    </form>
+    <section class="section-auth">
+        <div class="auth-container">
+            <div class="container-form">
+                <div class="header-register">
+                    <a href="/">
+                        <i class="fa-solid fa-arrow-left"></i> <!-- Flecha izquierda -->
+                    </a>
+                    <div>
+                        <h2>Crear Cuenta</h2>
+                        <p>Complete los datos</p>
+                    </div>
+                </div>
+
+                <form id="register-form" class="login-form">
+                    <div>
+                        <p>Usuario:</p>
+                        <input type="text" id="nombre" placeholder="Ingrese su Nombre de Usuario" required><br>
+                    </div>
+                    <div>
+                        <p>Correo electrónico:</p>
+                        <input type="email" id="email" placeholder="Ingrese su Correo electrónico" required><br>
+                    </div>
+                    <div>
+                        <p>Contraseña:</p>
+                        <input type="password" id="password" placeholder="Ingrese su Contraseña" required><br>
+                    </div>
+                    <button class="button-auth" type="submit">Crear Cuenta</button>
+                </form>
+            </div>
+            <div class="lottie-register">
+                <lottie-player 
+                    src="https://lottie.host/4ac4a610-2a43-49e0-b946-b49d0a53cfe0/YexpZfbO28.json"
+                    background="transparent" 
+                    speed="1" 
+                    style="width: 300px; height: 300px;" 
+                    loop 
+                    autoplay>
+                </lottie-player>
+            </div>
+        </div>
+    </section>
+    
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="contenedor">
+        <h1 class="titulo-error">Página no Encontrada</h1>
+        <p class="parrafo_error">Por favor ingrese una ruta valida</p>
+    </div>
+    <div class="contenedor_error">
+        <h3 class="subtitulo-error">Informacion de Error</h3>
+        <p>Error: 
+            <span class="span-error">{{ error.code }}</span>
+        </p>
+        <p>Nombre de Error: 
+            <span class="span-error">{{ error.name }}</span>
+        </p>
+        <p>Descripcion:  
+            <span class="span-error">{{ error.description  }}</span>
+        </p>
+    </div>
+    
+</body>
+</html>
