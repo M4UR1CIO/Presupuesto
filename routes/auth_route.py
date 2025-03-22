@@ -60,6 +60,7 @@ def login():
 
     return response
 
+# Perfil
 @auth_bp.route('/perfil', methods=["GET"])
 @jwt_required()
 def perfil():
@@ -74,6 +75,38 @@ def perfil():
         "nombre": usuario.nombre,
         "email": usuario.email
     }), 200
+
+@auth_bp.route('/editar-perfil', methods=['PUT'])
+@jwt_required()
+def editar_perfil():
+    usuario_id = get_jwt_identity()
+    usuario = Usuario.query.get(usuario_id)
+
+    if not usuario:
+        return jsonify({"msg": "Usuario no encontrado"}), 404
+
+    data = request.get_json()
+    nuevo_nombre = data.get('nombre')
+    nueva_password = data.get('password')
+    confirmar_password = data.get('confirm_password')
+
+    # Validación de datos
+    if not nuevo_nombre:
+        return jsonify({"msg": "El nombre no puede estar vacío"}), 400
+
+    if nueva_password:
+        if nueva_password != confirmar_password:
+            return jsonify({"msg": "Las contraseñas no coinciden"}), 400
+        usuario.set_password(nueva_password)  # Guardar nueva contraseña encriptada
+
+    # Actualizar nombre de usuario
+    usuario.nombre = nuevo_nombre
+
+    # Guardar cambios
+    db.session.commit()
+
+    return jsonify({"msg": "Perfil actualizado exitosamente"}), 200
+
 
 @auth_bp.route('/refresh', methods=['POST'])
 @jwt_required(refresh=True)  # Solo acepta el Refresh Token

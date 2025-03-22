@@ -1,0 +1,44 @@
+{% extends "sidebar.html" %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+    <h1>Perfil</h1>
+    <div class="perfil-container">
+        <p><strong>Nombre de Usuario:</strong> <span id="nombre-usuario"></span></p>
+        <p><strong>Correo Electrónico:</strong> <span id="email-usuario"></span></p>
+        <button id="btn-editar-perfil" class="btn-editar-perfil">Editar Perfil</button>
+    </div>
+
+    <!-- Modal de Edición de Perfil -->
+    <div id="modalEditarPerfil" class="modal">
+        <div class="modal-content">
+            <header class="header-modal">
+                <h2>Editar Perfil</h2>
+                <button class="close">&times;</button>
+            </header>
+
+            <form id="form-editar-perfil">
+                <div class="form-group">
+                    <label for="editar-nombre">Nombre de Usuario:</label>
+                    <input type="text" id="editar-nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editar-password">Nueva Contraseña:</label>
+                    <input type="password" id="editar-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="editar-confirm-password">Confirmar Contraseña:</label>
+                    <input type="password" id="editar-confirm-password">
+                </div>
+
+                <button type="submit" class="btn-submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/perfil.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}

@@ -22,7 +22,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
         const data = await response.json();
 
         if (response.ok) {
-            window.location.href = "/sidebar"; // Redirigir al dashboard después del login
+            window.location.href = "/presupuestos"; // Redirigir al dashboard después del login
         } else {
             mostrarError(data.msg);
         }

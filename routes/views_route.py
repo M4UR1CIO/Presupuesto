@@ -12,11 +12,18 @@ def login():
 def register():
     return render_template('register.html')
 
-@views_bp.route("/sidebar")
-@jwt_required()
-def dashboard():
-    return render_template('sidebar.html')
-
 @views_bp.route('/presupuestos')
+@jwt_required()
 def presupuestos():
     return render_template('presupuestos.html')
+
+@views_bp.route('/perfil')
+@jwt_required()
+def perfil():
+    return render_template('perfil.html')
+
+@views_bp.route('/crear_presupuesto')
+@jwt_required()
+def crear_presupuesto():
+    return render_template('crear_presupuesto.html')
+

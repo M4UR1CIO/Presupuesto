@@ -10,15 +10,17 @@ presupuesto_bp = Blueprint('presupuesto', __name__)
 @jwt_required()
 def obtener_presupuestos():
     usuario_id = get_jwt_identity()
-    presupuestos = Presupuesto.query.filter_by(usuario_id=usuario_id).all()
+    presupuestos = Presupuesto.query.filter_by(usuario_id=usuario_id).order_by(Presupuesto.numero_presupuesto.asc()).all()
 
     return jsonify([{
         "id": p.id,
+        "numero_presupuesto": p.numero_presupuesto,  # Agregado
         "nombre": p.nombre,
         "descripcion": p.descripcion,
         "total": p.total,
         "fecha_creacion": p.fecha_creacion
     } for p in presupuestos]), 200
+
 
 # Crear Presupuesto
 @presupuesto_bp.route('/presupuestos', methods=['POST'])
@@ -34,7 +36,8 @@ def crear_presupuesto():
         nombre=data['nombre'],
         descripcion=data.get('descripcion', ""),
         total=data['total'],
-        usuario_id=usuario_id
+        usuario_id=usuario_id,
+        numero_presupuesto=Presupuesto.obtener_siguiente_numero(usuario_id)  # Generar número incremental
     )
 
     db.session.add(nuevo_presupuesto)
@@ -42,7 +45,8 @@ def crear_presupuesto():
 
     return jsonify({
         "msg": "Presupuesto creado con éxito",
-        "id": nuevo_presupuesto.id
+        "id": nuevo_presupuesto.id,
+        "numero_presupuesto": nuevo_presupuesto.numero_presupuesto
     }), 201
 
 # Actualizar Presupuesto
@@ -79,9 +83,17 @@ def eliminar_presupuesto(presupuesto_id):
         return jsonify({"msg": "Presupuesto no encontrado"}), 404
 
     if presupuesto.usuario_id != int(usuario_id):
-        print(presupuesto.usuario_id, usuario_id)
         return jsonify({"msg": "No tienes permiso para eliminar este presupuesto"}), 403
 
+    # Eliminar el presupuesto
     db.session.delete(presupuesto)
     db.session.commit()
-    return jsonify({"msg": "Presupuesto eliminado"}), 200
+
+    # Recalcular los números de presupuesto
+    presupuestos = Presupuesto.query.filter_by(usuario_id=usuario_id).order_by(Presupuesto.numero_presupuesto).all()
+    for i, p in enumerate(presupuestos, start=1):
+        p.numero_presupuesto = i
+
+    db.session.commit()
+
+    return jsonify({"msg": "Presupuesto eliminado y números recalculados"}), 200

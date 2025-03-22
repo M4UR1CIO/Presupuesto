@@ -19,17 +19,17 @@
         <div class="sidebar">
             <nav class="menu">
                 <ul>
-                    <li>
+                    <li class="{% if request.endpoint == 'views.presupuestos' %}active{% endif %}">
                         <i class="fa-solid fa-file-invoice"></i>
-                        <a href="/presupuestos">Presupuestos</a>
+                        <a href="{{ url_for('views.presupuestos') }}">Presupuestos</a>
                     </li>
-                    <li>
+                    <li class="{% if request.endpoint == 'views.crear_presupuesto' %}active{% endif %}">
                         <i class="fa-solid fa-file-circle-plus"></i>
-                        <a href="">Crear Presupuesto</a>
+                        <a href="{{ url_for('views.crear_presupuesto') }}">Crear Presupuesto</a>
                     </li>
-                    <li>
+                    <li class="{% if request.endpoint == 'views.perfil' %}active{% endif %}">
                         <i class="fa-solid fa-user"></i>
-                        <a href="">Perfil</a>
+                        <a href="{{ url_for('views.perfil') }}">Perfil</a>
                     </li>
                 </ul>
             </nav>
@@ -42,6 +42,6 @@
             {% block content %}{% endblock %}
         </div>
     </div>
-    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

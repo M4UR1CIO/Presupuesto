@@ -143,17 +143,21 @@ body {
 .button-auth{
     margin-top: 1rem;
     width: 100%;
-    background-color: black;
-    color: white;
+    background-color: #70b9a8;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
     padding: 1rem;
+    border: none;
     border-radius: 1rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
 .button-auth:hover{
+    color: #fff;
     scale: 105%;
-    background-color: #434040;
+    background-color: #578379;
 }
 
 .crear-cuenta{
@@ -192,13 +196,14 @@ body {
 }
 
 /* Sidebar */
-
 .sidebar{
     display: flex;
     flex-direction: column;
-    background-color: #fff ;
+    background-color: #ffffff ;
     max-width: 26rem;
     height: 100vh;
+    position: fixed;
+    box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.2); /* Sombra solo a la derecha */
 }
 
 .menu ul{
@@ -208,34 +213,47 @@ body {
     margin: 2rem 0 0 0;
 }
 
-.menu li{
+.menu li {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
     margin-bottom: 0.5rem;
-    padding: 1rem;
+    padding: 0.2rem 1rem 0.2rem 1rem;
 }
 
-.menu li:hover{
+.menu li:hover {
     scale: 105%;
     background-color: #dddcdc;
 }
 
-.menu i {
-    font-size: 1.8rem;  /* Tamaño uniforme para los iconos */
-    flex-shrink: 0;  /* Evita que los íconos se reduzcan */
-    width: 1.5rem;  /* Asegura que todos los íconos ocupen el mismo espacio */
-    text-align: center; /* Centra el icono */
+.menu li.active {
+    scale: 105%;
+    background-color: #dddcdc;
 }
 
-.menu a{
+/* Ajustamos el <a> para que ocupe todo el <li> */
+.menu li a {
     text-decoration: none;
     font-weight: 600;
     color: #000000;
     font-size: large;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Hace que ocupe todo el ancho del li */
+    height: 100%; /* Hace que ocupe toda la altura del li */
+    padding: 1rem; /* Mantiene el espaciado interno */
+    border-radius: 0.5rem; /* Mantiene el borde redondeado */
 }
+
+/* Ajuste para el ícono */
+.menu i {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 1.5rem;
+    text-align: center;
+}
+
 
 .logout{
     bottom: 0%;
@@ -249,9 +267,287 @@ body {
     background-color: #D32F2F ;
     width: 100%;
     height: 100%;
-    text-transform: uppercase;
     border-radius: 1rem;
     font-size: large;
-    font-weight: bold;
+    font-weight: 500;
     color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-logout:hover {
+    background-color: #9f2b2b;
+    scale: 105%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    margin-left: 240px;  /* Ajusta según el ancho del sidebar */
+    padding: 1rem 0 0 10rem;
+    flex-grow: 1;
+    background: #70b9a8;
+    color: white;
+    min-height: 100vh; /* Hace que tome el alto completo de la pantalla */
+}
+
+
+/* Presupuesto */
+/* Estilos generales de la tabla */
+.tabla-presupuestos {
+    width: 90%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    text-align: center;
+    font-size: 500;
+}
+
+/* Encabezado */
+.tabla-presupuestos thead {
+    background-color: #2f2f2f;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Filas */
+.tabla-presupuestos th, 
+.tabla-presupuestos td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover en filas */
+.tabla-presupuestos tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Íconos de acción */
+.tabla-presupuestos .btn-accion {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.tabla-presupuestos .btn-accion:hover {
+    transform: scale(1.2);
+}   
+
+/* Botón de eliminar en rojo */
+.tabla-presupuestos .btn-eliminar {
+    color: red;
+}
+
+/* Botón de editar en azul */
+.tabla-presupuestos .btn-editar {
+    color: #007bff;
+}
+
+/* Estilos generales del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in-out; /* Animación de entrada */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header del modal */
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #2f2f2f;
+    color: #ffffff;
+}
+
+.header-modal h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.close {
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #e74c3c; /* Cambia el color al pasar el mouse */
+}
+
+/* Formulario */
+#form-editar-presupuesto, #form-editar-perfil {
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #000;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 1.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #3498db; /* Cambia el color del borde al enfocar */
+    outline: none;
+}
+
+/* Botón de enviar */
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9; /* Cambia el color al pasar el mouse */
+}
+
+/* Crear Presupuesto */
+/* Estilos para el formulario */
+#form-crear-presupuesto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 60%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los grupos de formulario */
+.form-group-crear {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group-crear label {
+    font-weight: 500;
+    color: #2f2f2f;
+}
+
+.form-group-crear input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group-crear input:focus {
+    border-color: #3498db; /* Cambia el color del borde al enfocar */
+    outline: none;
+}
+
+/* Estilos para el botón */
+.button-create-presupuesto {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-create-presupuesto:hover {
+    background-color: #2980b9; /* Cambia el color al pasar el mouse */
+}
+
+/* Perfil */
+.perfil-container {
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.perfil-container p {
+    color: #555;
+    margin: 10px 0;
+}
+
+.perfil-container strong {
+    color: #222;
+}
+
+.btn-editar-perfil {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+}
+
+.btn-editar-perfil:hover {
+    background-color: #2980b9;
+    scale: 105%;
 }
